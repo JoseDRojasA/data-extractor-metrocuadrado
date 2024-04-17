@@ -4,7 +4,6 @@ import { ProductData } from "../../models/product-data";
 
 export const loadCsvFile = (data: ProductData[]) => {
   const json2csv = new Transform();
-
   const output = fs.createWriteStream("data.csv", { encoding: "utf8" });
 
   return new Promise((resolve, reject) => {
@@ -13,7 +12,8 @@ export const loadCsvFile = (data: ProductData[]) => {
     json2csv.on("error", (error) => {
       reject(error);
     });
-    json2csv.end(() => {
+    json2csv.end();
+    output.on('finish', () => {
       resolve(null);
     });
   });
