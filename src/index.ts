@@ -1,10 +1,10 @@
+import { writeFileSync } from "fs";
+import { json2csv } from "json-2-csv";
 import puppeteer from "puppeteer";
 import { env } from "./env";
 import { extractInitialPageData } from "./steps/extract-initial-page-data";
 import { extractSpecificData } from "./steps/extract-specific-data";
-import { loadCsvFile } from "./steps/load-csv-file";
 import { htmlOnly } from "./utils/html-only";
-import { writeFileSync } from "fs";
 
 (async () => {
   const browser = await puppeteer.launch({
@@ -28,7 +28,9 @@ import { writeFileSync } from "fs";
 
   await browser.close();
 
-  writeFileSync("data.json", JSON.stringify(fullData));
+  const csv = await json2csv(fullData, {});
 
-  // await loadCsvFile(fullData);
+  writeFileSync("data.csv", csv);
+
+  console.log("Import done");
 })();
