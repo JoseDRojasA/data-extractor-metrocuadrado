@@ -11,8 +11,5 @@ export interface ProductData extends LandingPageProductData {
   rooms: string;
   bathrooms: string;
   garages: string;
-  featured: {
-    title: string;
-    items: string[];
-  }[];
+  featured: string[];
 }
