@@ -6,7 +6,10 @@ export const extractInitialPageData = async (page: Page) => {
   console.log("Extracting data from initial page");
 
   let lastNextPageButton: ElementHandle | null;
+  let pageNumber = 1;
   do {
+    console.log(`Reading page ${pageNumber}`);
+    pageNumber++;
     lastNextPageButton = await page.$(".item-icon-next.page-item.disabled");
     const nextElement = await page.$(".item-icon-next.page-item");
     const resultList = await page.$$(".realestate-results-list > li");

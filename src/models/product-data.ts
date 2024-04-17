@@ -12,4 +12,5 @@ export interface ProductData extends LandingPageProductData {
   bathrooms: string;
   garages: string;
   featured: string[];
+  adminPrice: number;
 }
