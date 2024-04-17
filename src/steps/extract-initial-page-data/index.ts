@@ -3,6 +3,7 @@ import { LandingPageProductData } from "../../models/landing-page-product-data";
 
 export const extractInitialPageData = async (page: Page) => {
   const totalResults: LandingPageProductData[] = [];
+  console.log("Extracting data from initial page");
 
   let lastNextPageButton: ElementHandle | null;
   do {
@@ -35,4 +36,6 @@ export const extractInitialPageData = async (page: Page) => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
     }
   } while (!lastNextPageButton);
+
+  return totalResults;
 };
