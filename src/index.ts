@@ -4,6 +4,7 @@ import { extractInitialPageData } from "./steps/extract-initial-page-data";
 import { extractSpecificData } from "./steps/extract-specific-data";
 import { loadCsvFile } from "./steps/load-csv-file";
 import { htmlOnly } from "./utils/html-only";
+import { writeFileSync } from "fs";
 
 (async () => {
   const browser = await puppeteer.launch({
@@ -27,5 +28,7 @@ import { htmlOnly } from "./utils/html-only";
 
   await browser.close();
 
-  await loadCsvFile(fullData);
+  writeFileSync("data.json", JSON.stringify(fullData));
+
+  // await loadCsvFile(fullData);
 })();
