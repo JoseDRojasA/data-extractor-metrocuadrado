@@ -46,7 +46,7 @@ export const extractSpecificData = async (
           rooms: realEstate?.rooms,
           bathrooms: realEstate?.bathrooms,
           garages: realEstate?.garages,
-          adminPrice: realEstate?.detail.adminPrice,
+          adminPrice: realEstate?.detail?.adminPrice,
         });
 
         if (index % 10 === 0) {
